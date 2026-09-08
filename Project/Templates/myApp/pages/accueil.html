@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours de Mathématiques - Accueil</title>
+    <link rel="stylesheet" href="{% static 'css/css/accueil.css' %}">
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">Cours de Mathématiques</div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'accueil' %}" class="active">Accueil</a></li>
+                <li><a href="{% url 'cv' %}">CV</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Bienvenue dans les Cours de Mathématiques</h1>
+            <p>Enseignement de qualité pour tous les niveaux</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Collège Section -->
+        <section class="level-section">
+            <h2 class="section-title">Niveau Collège</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">📚</div>
+                    <h3>Première Année</h3>
+                    <p>1ère Année du Collège</p>
+                    <ul class="topics-list">
+                        <li>Nombres entiers</li>
+                        <li>Fractions</li>
+                        <li>Géométrie plane</li>
+                    </ul>
+                    <button class="btn-primary">Plus de détails</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">📐</div>
+                    <h3>Deuxième Année</h3>
+                    <p>2ème Année du Collège</p>
+                    <ul class="topics-list">
+                        <li>Nombres rationnels</li>
+                        <li>Équations</li>
+                        <li>Statistiques</li>
+                    </ul>
+                    <button class="btn-primary">Plus de détails</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Troisième Année</h3>
+                    <p>3ème Année du Collège</p>
+                    <ul class="topics-list">
+                        <li>Racines carrées</li>
+                        <li>Théorème de Thalès</li>
+                        <li>Fonctions linéaires</li>
+                    </ul>
+                    <button class="btn-primary">Plus de détails</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lycée Section -->
+        <section class="level-section lycee-section">
+            <h2 class="section-title">Niveau Lycée</h2>
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-icon">🌟</div>
+                    <h3>Tronc Commun</h3>
+                    <p>Tronc Commun Scientifique</p>
+                    <ul class="topics-list">
+                        <li>Trigonométrie</li>
+                        <li>Suites numériques</li>
+                        <li>Transformations</li>
+                    </ul>
+                    <button class="btn-secondary">Plus de détails</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🔬</div>
+                    <h3>Première BAC</h3>
+                    <p>Première Année Baccalauréat</p>
+                    <ul class="topics-list">
+                        <li>Limites</li>
+                        <li>Dérivation</li>
+                        <li>Étude de fonctions</li>
+                    </ul>
+                    <button class="btn-secondary">Plus de détails</button>
+                </div>
+
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Deuxième BAC</h3>
+                    <p>Deuxième Année Baccalauréat</p>
+                    <ul class="topics-list">
+                        <li>Nombres complexes</li>
+                        <li>Intégration</li>
+                        <li>Équations différentielles</li>
+                    </ul>
+                    <button class="btn-secondary">Plus de détails</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 Cours de Mathématiques. Tous droits réservés.</p>
+    </footer>
+
+    <script src="{% static 'js/js/accueil.js' %}"></script>
+</body>
+</html>

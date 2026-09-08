@@ -1,0 +1,567 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - AI & Big Data Engineer</title>
+    <link rel="stylesheet" href="{% static 'css/css/cv.css' %}">
+   
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">AI & Data Portfolio</div>
+            <ul class="nav-menu">
+                <li><a href="{% url 'accueil' %}">Home</a></li>
+                <li><a href="{% url 'cv' %}" class="active">CV</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CV Header -->
+    <header class="cv-header">
+        <div class="profile-section">
+            <div class="profile-image">
+                <div class="avatar"><img src="{% static 'img/img/prof.jpeg' %}" alt="" id ="prof"></div>
+            </div>
+            <h1 class="profile-name">ELHADI ABDELMOUNAIM</h1>
+            <p class="profile-title">AI & Big Data Engineering Student | Full Stack Developer</p>
+            <div class="contact-info">
+                <div class="info-item">
+                    <span class="icon">📧</span>
+                    <span>elhadiabdelmounaim.email@.com</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📱</span>
+                    <span>+212 628641529</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <span>Casablanca, Morocco</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">💼</span>
+                    <span>LinkedIn</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">💻</span>
+                    <span>GitHub</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- CV Content -->
+    <main class="cv-content">
+        <div class="cv-container">
+            
+            <!-- About Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+           <span class="title-icon">👤</span>
+             About Me
+              </h2>
+                <div class="section-content">
+                <p class="about-text">
+                A passionate student in Artificial Intelligence and Big Data Engineering, with strong 
+                expertise in Full Stack development. Currently pursuing my studies, I combine advanced 
+                skills in Machine Learning, Deep Learning, and large-scale data processing with a solid 
+                mastery of modern web development. My goal is to create innovative solutions that 
+                leverage the power of AI to solve complex real-world problems.
+             </p>        
+                </div>
+            </section>
+
+            <!-- Education Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🎓</span>
+                    Academic Background
+                </h2>
+                <div class="section-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Engineering Degree - Artificial Intelligence & Big Data</h3>
+                                <span class="timeline-date">In progress - 2024</span>
+                                <ul class="experience-list">
+                                    <li>Specialization in Machine Learning and Deep Learning</li>
+                                    <li>Big Data Technologies (Hadoop, Spark, Kafka)</li>
+                                    <li>Full Stack Development (Frontend & Backend)</li>
+                                    <li>Hands-on projects in Natural Language Processing and Computer Vision</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>Preparatory Classes / Associate Degree / Bachelor's Degree</h3>
+                                <span class="timeline-date">20XX - 20XX</span>
+                                <ul class="experience-list">
+                                    <li>Fundamentals in mathematics and computer science</li>
+                                    <li>Algorithms and data structures</li>
+                                    <li>Object-oriented programming</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-content">
+                                <h3>High School Diploma - Mathematics / Physical Sciences</h3>
+                                <span class="timeline-date">20XX</span>
+                                <ul class="experience-list">
+                                    <li>Mathematics track</li>
+                                    <li>Honors (High Distinction / Distinction)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technical Skills Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">⚡</span>
+                    Technical Skills
+                </h2>
+                <div class="section-content">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3>Artificial Intelligence & ML</h3>
+                            <div class="skill-item">
+                                <span>Python (NumPy, Pandas, Scikit-learn)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Deep Learning (TensorFlow, PyTorch, Keras)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Computer Vision (OpenCV, YOLO)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>NLP (NLTK, spaCy, Transformers)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Big Data & Databases</h3>
+                            <div class="skill-item">
+                                <span>Hadoop & Apache Spark</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>SQL (PostgreSQL, MySQL)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>NoSQL (MongoDB, Cassandra)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 82%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Apache Kafka</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>Full Stack Development</h3>
+                            <div class="skill-item">
+                                <span>Frontend (React, Vue.js, Angular)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Backend (Django, Flask, FastAPI)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 88%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Node.js & Express</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>REST API & GraphQL</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 85%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="skill-category">
+                            <h3>DevOps & Cloud</h3>
+                            <div class="skill-item">
+                                <span>Docker & Kubernetes</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 78%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>Git & GitHub/GitLab</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>AWS / Google Cloud / Azure</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 75%"></div>
+                                </div>
+                            </div>
+                            <div class="skill-item">
+                                <span>CI/CD (Jenkins, GitHub Actions)</span>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Projects Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🚀</span>
+                    Projects
+                </h2>
+                <div class="section-content">
+                    <div class="education-grid">
+                        <div class="education-item">
+                            <div class="education-icon">🤖</div>
+                            <h3>AI Recommendation System</h3>
+                            <p class="institution">Machine Learning & Big Data</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>Collaborative filtering algorithms</li>
+                                <li>Large-scale data processing with Spark</li>
+                                <li>Web interface with React & Django</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-icon">👁️</div>
+                            <h3>Real-Time Object Detection</h3>
+                            <p class="institution">Computer Vision & Deep Learning</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>YOLO and CNN models</li>
+                                <li>Optimization with TensorFlow</li>
+                                <li>Deployment on edge devices</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-icon">💬</div>
+                            <h3>Intelligent NLP Chatbot</h3>
+                            <p class="institution">Natural Language Processing</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>Use of Transformers</li>
+                                <li>FastAPI backend</li>
+                                <li>Modern conversational interface</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-icon">📊</div>
+                            <h3>Data Analytics Platform</h3>
+                            <p class="institution">Full Stack & Data Visualization</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>Interactive dashboard with D3.js</li>
+                                <li>ETL pipeline with Apache Airflow</li>
+                                <li>RESTful API with Django</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-icon">🌐</div>
+                            <h3>Full Stack Web Application</h3>
+                            <p class="institution">Modern Web Development</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>React frontend with Redux</li>
+                                <li>Node.js/Django backend</li>
+                                <li>JWT authentication</li>
+                            </ul>
+                        </div>
+
+                        <div class="education-item">
+                            <div class="education-icon">🔍</div>
+                            <h3>Predictive Analytics</h3>
+                            <p class="institution">Machine Learning & Analytics</p>
+                            <ul class="experience-list" style="text-align: left; margin-top: 1rem;">
+                                <li>Advanced regression models</li>
+                                <li>Feature engineering</li>
+                                <li>Visualization with Plotly</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Languages & Tools -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🔧</span>
+                    Programming Languages & Tools
+                </h2>
+                <div class="section-content">
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <div class="language-name">Python</div>
+                            <div class="language-level">Expert</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">JavaScript/TypeScript</div>
+                            <div class="language-level">Advanced</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">Java</div>
+                            <div class="language-level">Advanced</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">C/C++</div>
+                            <div class="language-level">Intermediate</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">R</div>
+                            <div class="language-level">Intermediate</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">Scala</div>
+                            <div class="language-level">Basic</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Languages Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🌍</span>
+                    Languages
+                </h2>
+                <div class="section-content">
+                    <div class="languages-grid">
+                        <div class="language-item">
+                            <div class="language-name">Arabic</div>
+                            <div class="language-level">Native Language</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">French</div>
+                            <div class="language-level">Fluent</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                            </div>
+                        </div>
+
+                        <div class="language-item">
+                            <div class="language-name">English</div>
+                            <div class="language-level">Advanced (Technical)</div>
+                            <div class="language-dots">
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot filled"></span>
+                                <span class="dot"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Certifications Section -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">🏆</span>
+                    Certifications & Training
+                </h2>
+                <div class="section-content">
+                    <div class="certifications-list">
+                        <div class="cert-item">
+                            <div class="cert-icon">✓</div>
+                            <div class="cert-details">
+                                <h3>Machine Learning Specialization</h3>
+                                <p>Coursera - Stanford University / DeepLearning.AI</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">✓</div>
+                            <div class="cert-details">
+                                <h3>Deep Learning Specialization</h3>
+                                <p>Coursera - Andrew Ng</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">✓</div>
+                            <div class="cert-details">
+                                <h3>AWS Certified Cloud Practitioner</h3>
+                                <p>Amazon Web Services</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">✓</div>
+                            <div class="cert-details">
+                                <h3>Big Data with Apache Spark</h3>
+                                <p>Udemy / DataCamp</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">✓</div>
+                            <div class="cert-details">
+                                <h3>Full Stack Web Development</h3>
+                                <p>FreeCodeCamp / Udacity</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Soft Skills -->
+            <section class="cv-section">
+                <h2 class="section-title">
+                    <span class="title-icon">💡</span>
+                    Soft Skills
+                </h2>
+                <div class="section-content">
+                    <div class="education-grid">
+                        <div class="cert-item">
+                            <div class="cert-icon">🎯</div>
+                            <div class="cert-details">
+                                <h3>Problem Solving</h3>
+                                <p>Analytical approach and critical thinking to solve complex technical challenges</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">👥</div>
+                            <div class="cert-details">
+                                <h3>Teamwork</h3>
+                                <p>Effective collaboration in agile environments (Scrum, Kanban)</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">📚</div>
+                            <div class="cert-details">
+                                <h3>Continuous Learning</h3>
+                                <p>Constant technology watch and adaptation to new technologies</p>
+                            </div>
+                        </div>
+
+                        <div class="cert-item">
+                            <div class="cert-icon">💬</div>
+                            <div class="cert-details">
+                                <h3>Communication</h3>
+                                <p>Clear presentation of technical concepts to different audiences</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 AI & Data Science Portfolio. All rights reserved.</p>
+    </footer>
+
+    <script src="{% static 'js/js/cv.js' %}"></script>
+</body>
+</html>
