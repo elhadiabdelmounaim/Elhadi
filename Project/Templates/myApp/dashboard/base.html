@@ -1,0 +1,31 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}CV Dashboard{% endblock %} · CV Studio</title>
+    <link rel="stylesheet" href="{% static 'css/owner-dashboard.css' %}">
+</head>
+<body class="dashboard-shell">
+    <header class="dash-header">
+        <a class="dash-brand" href="{% url 'dashboard_home' %}"><span class="brand-mark">CV</span><span>CV Studio<small>Private dashboard</small></span></a>
+        <nav class="dash-nav">
+            <a href="{% url 'root' %}" target="_blank" rel="noopener">View public CV ↗</a>
+            <form method="post" action="{% url 'dashboard_logout' %}">
+                {% csrf_token %}
+                <button class="nav-signout" type="submit">Sign out</button>
+            </form>
+        </nav>
+    </header>
+    <main class="dash-main">
+        {% if messages %}
+            <div class="flash-stack">
+                {% for message in messages %}<div class="flash">{{ message }}</div>{% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    <footer class="dash-footer">Changes you save here appear on your public CV.</footer>
+</body>
+</html>

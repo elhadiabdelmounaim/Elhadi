@@ -1,0 +1,37 @@
+{% extends "myApp/dashboard/base.html" %}
+{% block title %}Overview{% endblock %}
+{% block content %}
+<section class="dash-intro">
+    <div>
+        <p class="eyebrow">YOUR WORKSPACE</p>
+        <h1>Manage your CV</h1>
+        <p class="muted">Edit your profile and each CV section. Saved changes appear on the public page straight away.</p>
+    </div>
+    <a class="button button-primary" href="{% url 'root' %}" target="_blank" rel="noopener">Preview public CV ↗</a>
+</section>
+
+<section class="profile-card">
+    <div class="profile-avatar">{{ profile.name|default:"CV"|slice:":2" }}</div>
+    <div class="profile-summary">
+        <p class="eyebrow">PUBLIC PROFILE</p>
+        <h2>{{ profile.name|default:"Your name" }}</h2>
+        <p class="muted">{{ profile.headline|default:"Add a headline to your profile." }}</p>
+    </div>
+    <a class="button button-secondary" href="{% url 'dashboard_profile_edit' %}">Edit profile</a>
+</section>
+
+<div class="section-heading">
+    <div><p class="eyebrow">CONTENT</p><h2>CV sections</h2></div>
+    <span class="count-pill">{{ sections|length }} sections</span>
+</div>
+<section class="section-grid">
+    {% for section in sections %}
+    <article class="section-card">
+        <div class="section-card-top"><span class="section-icon">{{ section.icon|default:"✦" }}</span><span class="visibility {% if section.is_visible %}is-visible{% endif %}">{% if section.is_visible %}Public{% else %}Hidden{% endif %}</span></div>
+        <h3>{{ section.title }}</h3>
+        <p class="muted">{{ section.items.count }} item{{ section.items.count|pluralize }}</p>
+        <a class="card-link" href="{% url 'dashboard_section' section.key %}">Manage section <span>→</span></a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}

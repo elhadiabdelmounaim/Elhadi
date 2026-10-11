@@ -365,6 +365,11 @@ body::after {
     font-size: 1.2rem;
 }
 
+.info-item a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* ========== CV CONTENT ========== */
 .cv-content {
     position: relative;

@@ -1,4 +1,76 @@
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+
+
+class CVProfile(models.Model):
+    name = models.CharField(max_length=160, blank=True)
+    headline = models.CharField(max_length=240, blank=True)
+    email = models.CharField(max_length=240, blank=True)
+    phone = models.CharField(max_length=80, blank=True)
+    location = models.CharField(max_length=160, blank=True)
+    linkedin_url = models.URLField(blank=True)
+    github_url = models.URLField(blank=True)
+
+    class Meta:
+        verbose_name = "CV profile"
+        verbose_name_plural = "CV profile"
+
+    def save(self, *args, **kwargs):
+        self.pk = 1
+        super().save(*args, **kwargs)
+
+
+class CVSection(models.Model):
+    SECTION_KEYS = [
+        ("about", "About Me"),
+        ("education", "Academic Background"),
+        ("skills", "Technical Skills"),
+        ("projects", "Projects"),
+        ("tools", "Programming Languages & Tools"),
+        ("languages", "Languages"),
+        ("certifications", "Certifications & Training"),
+        ("soft_skills", "Soft Skills"),
+    ]
+
+    key = models.CharField(max_length=32, choices=SECTION_KEYS, unique=True)
+    title = models.CharField(max_length=160)
+    icon = models.CharField(max_length=16, blank=True)
+    order = models.PositiveIntegerField(default=0)
+    is_visible = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order", "id"]
+
+    def __str__(self):
+        return self.title
+
+
+class CVItem(models.Model):
+    section = models.ForeignKey(CVSection, on_delete=models.CASCADE, related_name="items")
+    icon = models.CharField(max_length=16, blank=True)
+    title = models.CharField(max_length=240)
+    subtitle = models.CharField(max_length=240, blank=True)
+    description = models.TextField(blank=True)
+    details = models.TextField(
+        blank=True,
+        help_text="Optional: one bullet point per line.",
+    )
+    category = models.CharField(max_length=160, blank=True)
+    proficiency = models.PositiveSmallIntegerField(
+        default=100,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        help_text="0–100. Used for skill bars and language/tool rating dots.",
+    )
+    order = models.PositiveIntegerField(default=0)
+    is_visible = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ["order", "id"]
+        verbose_name = "CV item"
+        verbose_name_plural = "CV items"
+
+    def __str__(self):
+        return self.title
 
 class Contact(models.Model):
 

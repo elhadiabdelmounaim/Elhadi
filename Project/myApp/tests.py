@@ -1,5 +1,8 @@
+from django.contrib.auth import get_user_model
 from django.test import Client, TestCase
-from .models import Contact
+from django.urls import reverse
+
+from .models import Contact, CVItem, CVProfile, CVSection
 
 class SetupTests(TestCase):
     def test_existing_pages_load(self):
@@ -13,6 +16,79 @@ class SetupTests(TestCase):
     def test_cv_is_home_page_and_accueil_is_removed(self):
         self.assertContains(self.client.get('/'), 'ELHADI ABDELMOUNAIM')
         self.assertEqual(self.client.get('/accueil').status_code, 404)
+
+    def test_cv_content_comes_from_database(self):
+        section = CVSection.objects.get(key="projects")
+        CVItem.objects.create(section=section, title="Database-powered project", order=99)
+        response = self.client.get("/")
+        self.assertContains(response, "Database-powered project")
+        self.assertContains(response, 'class="cv-section"')
+
+    def test_dashboard_is_private_and_owner_only(self):
+        response = self.client.get(reverse("dashboard_home"))
+        self.assertRedirects(
+            response,
+            f"{reverse('dashboard_login')}?next={reverse('dashboard_home')}",
+        )
+        self.assertEqual(self.client.get(reverse("dashboard_login")).status_code, 200)
+
+        user = get_user_model().objects.create_user(username="visitor", password="test-password")
+        self.client.force_login(user)
+        self.assertEqual(self.client.get(reverse("dashboard_home")).status_code, 403)
+
+    def test_owner_can_add_edit_and_delete_cv_items(self):
+        owner = get_user_model().objects.create_superuser(
+            username="owner", email="owner@example.com", password="test-password"
+        )
+        self.client.force_login(owner)
+        self.assertEqual(self.client.get(reverse("dashboard_home")).status_code, 200)
+
+        add_url = reverse("dashboard_item_create", args=["projects"])
+        response = self.client.post(add_url, {
+            "icon": "✨", "title": "Created from dashboard", "subtitle": "Test project",
+            "description": "Managed without editing code.", "details": "First detail",
+            "category": "", "proficiency": 80, "order": 99, "is_visible": "on",
+        })
+        self.assertRedirects(response, reverse("dashboard_section", args=["projects"]))
+        item = CVItem.objects.get(title="Created from dashboard")
+        self.assertContains(self.client.get("/"), "Created from dashboard")
+
+        edit_url = reverse("dashboard_item_edit", args=[item.pk])
+        self.client.post(edit_url, {
+            "icon": "✨", "title": "Updated from dashboard", "subtitle": "Test project",
+            "description": "Updated without editing code.", "details": "First detail",
+            "category": "", "proficiency": 80, "order": 99, "is_visible": "on",
+        })
+        item.refresh_from_db()
+        self.assertEqual(item.title, "Updated from dashboard")
+        self.assertContains(self.client.get("/"), "Updated from dashboard")
+
+        self.client.post(reverse("dashboard_item_delete", args=[item.pk]))
+        self.assertFalse(CVItem.objects.filter(pk=item.pk).exists())
+        self.assertNotContains(self.client.get("/"), "Updated from dashboard")
+
+    def test_owner_can_edit_profile_and_section_visibility(self):
+        owner = get_user_model().objects.create_superuser(
+            username="owner", email="owner@example.com", password="test-password"
+        )
+        self.client.force_login(owner)
+        self.client.post(reverse("dashboard_profile_edit"), {
+            "name": "A New CV Name", "headline": "A new role",
+            "email": "new@example.com", "phone": "", "location": "",
+            "linkedin_url": "", "github_url": "",
+        })
+        self.assertEqual(CVProfile.objects.get().name, "A New CV Name")
+        self.assertContains(self.client.get("/"), "A New CV Name")
+
+        self.client.post(reverse("dashboard_section_edit", args=["languages"]), {
+            "title": "My Languages", "icon": "🌍", "order": 5, "is_visible": "on",
+        })
+        self.assertContains(self.client.get("/"), "My Languages")
+        self.client.post(reverse("dashboard_section_edit", args=["languages"]), {
+            "title": "My Languages", "icon": "🌍", "order": 5,
+        })
+        self.assertNotContains(self.client.get("/"), "My Languages")
+        self.assertNotContains(self.client.get("/"), "English")
 
     def test_contact_without_optional_phone(self):
         client = Client(enforce_csrf_checks=True)

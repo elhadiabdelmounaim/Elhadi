@@ -1,0 +1,14 @@
+{% extends "myApp/dashboard/base.html" %}
+{% block title %}Delete item{% endblock %}
+{% block content %}
+<section class="editor-card delete-card">
+    <p class="eyebrow">REMOVE CV ITEM</p>
+    <h1>Delete “{{ item.title }}”?</h1>
+    <p class="muted">This removes the item from the public CV. This cannot be undone.</p>
+    <form method="post" class="form-actions">
+        {% csrf_token %}
+        <a class="button button-secondary" href="{{ cancel_url }}">Cancel</a>
+        <button class="button button-danger" type="submit">Delete item</button>
+    </form>
+</section>
+{% endblock %}

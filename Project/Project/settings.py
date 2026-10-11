@@ -56,6 +56,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'Project.urls'
+LOGIN_URL = 'dashboard_login'
+LOGIN_REDIRECT_URL = 'dashboard_home'
 
 TEMPLATES = [
     {

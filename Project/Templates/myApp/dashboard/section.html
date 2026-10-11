@@ -1,0 +1,39 @@
+{% extends "myApp/dashboard/base.html" %}
+{% block title %}{{ section.title }}{% endblock %}
+{% block content %}
+<div class="breadcrumbs"><a href="{% url 'dashboard_home' %}">Dashboard</a><span>/</span><span>{{ section.title }}</span></div>
+<section class="dash-intro section-intro">
+    <div>
+        <p class="eyebrow">CV SECTION</p>
+        <h1>{{ section.icon }} {{ section.title }}</h1>
+        <p class="muted">{% if section.is_visible %}This section is visible on your public CV.{% else %}This section is hidden from public visitors.{% endif %}</p>
+    </div>
+    <div class="button-row">
+        <a class="button button-secondary" href="{% url 'dashboard_section_edit' section.key %}">Section settings</a>
+        <a class="button button-primary" href="{% url 'dashboard_item_create' section.key %}">＋ Add item</a>
+    </div>
+</section>
+
+<section class="item-list">
+    {% for item in items %}
+    <article class="item-card">
+        <div class="item-main">
+            <div class="item-card-heading">
+                <h2>{{ item.title }}</h2>
+                <span class="visibility {% if item.is_visible %}is-visible{% endif %}">{% if item.is_visible %}Public{% else %}Hidden{% endif %}</span>
+            </div>
+            {% if item.subtitle %}<p class="item-subtitle">{{ item.subtitle }}</p>{% endif %}
+            {% if item.category %}<p class="item-category">{{ item.category }}</p>{% endif %}
+            {% if item.description %}<p class="item-description">{{ item.description|truncatechars:220 }}</p>{% endif %}
+            {% if item.details %}<p class="muted">{{ item.details|linebreaksbr|truncatechars:180 }}</p>{% endif %}
+        </div>
+        <div class="item-actions">
+            <a class="button button-small button-secondary" href="{% url 'dashboard_item_edit' item.id %}">Edit</a>
+            <a class="button button-small button-danger" href="{% url 'dashboard_item_delete' item.id %}">Delete</a>
+        </div>
+    </article>
+    {% empty %}
+    <div class="empty-state"><span>✦</span><h2>No items yet</h2><p class="muted">Add your first item to this section.</p><a class="button button-primary" href="{% url 'dashboard_item_create' section.key %}">Add item</a></div>
+    {% endfor %}
+</section>
+{% endblock %}

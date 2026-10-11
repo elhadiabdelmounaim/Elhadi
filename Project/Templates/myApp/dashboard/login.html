@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign in · CV Studio</title>
+    <link rel="stylesheet" href="{% static 'css/owner-dashboard.css' %}">
+</head>
+<body class="login-shell">
+    <main class="login-card">
+        <a class="dash-brand" href="{% url 'root' %}"><span class="brand-mark">CV</span><span>CV Studio<small>Private dashboard</small></span></a>
+        <h1>Welcome back</h1>
+        <p class="muted">Sign in to manage your CV. This area is private.</p>
+        {% if form.errors %}<div class="form-error">The username or password was not accepted.</div>{% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ next }}">
+            <div class="field"><label for="{{ form.username.id_for_label }}">Username</label>{{ form.username }}</div>
+            <div class="field"><label for="{{ form.password.id_for_label }}">Password</label>{{ form.password }}</div>
+            <button class="button button-primary button-wide" type="submit">Sign in</button>
+        </form>
+        <a class="back-link" href="{% url 'root' %}">← Back to the public CV</a>
+    </main>
+</body>
+</html>

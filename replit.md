@@ -1,7 +1,7 @@
 # Running the imported Django project
 
-The original Django 6 application remains in `Project/`, with its templates,
-static assets, and existing SQLite database unchanged.
+The original Django 6 application remains in `Project/`, with its existing
+SQLite database and public CV styling retained.
 
 ## Start
 
@@ -14,9 +14,20 @@ cd Project && python manage.py runserver 0.0.0.0:5000
 Python 3.12 and the dependencies declared in `Project/requirements.txt` are
 installed through the root `pyproject.toml` and `uv.lock`.
 
-The root URL displays the CV page. Routes include `/cv`, `/contact`, `/about`,
-and `/admin/`. The unused Home and Accueil pages and their routes have been
-removed.
+The root URL displays the public CV. Visitors do not need to sign in. The CV is
+managed at `/dashboard/`, which is limited to Django superusers; sign in at
+`/dashboard/login/`. The older Home and Accueil pages and routes were removed.
+
+The CV profile, sections, and entries are stored in the existing SQLite
+database. The initial data migration carries the current CV content into these
+tables. Changes made through the dashboard appear on the public CV immediately.
+
+If you do not have access to the existing owner account, create another owner
+from the Replit Shell:
+
+```sh
+cd Project && python manage.py createsuperuser
+```
 
 ## Configuration
 
