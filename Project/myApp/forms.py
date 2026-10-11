@@ -19,7 +19,7 @@ class ContactForm(forms.ModelForm):
 
     def clean_phone(self):
         """Validation simple du format de téléphone marocain (optionnel)."""
-        phone = self.cleaned_data.get('phone', '').strip()
+        phone = (self.cleaned_data.get('phone') or '').strip()
         if phone and not phone.replace(' ', '').replace('+', '').isdigit():
             raise forms.ValidationError("Veuillez entrer un numéro de téléphone valide.")
         return phone

@@ -20,12 +20,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-g6c!ff!5z&#q#7lorrtnxrjez0=@y_m=_8(ezu@%5$%p5q5!s4'
+SECRET_KEY = os.environ['SESSION_SECRET']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+
+# The development preview is served through Replit's HTTPS proxy.
+CSRF_TRUSTED_ORIGINS = ['https://*.replit.dev']
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition

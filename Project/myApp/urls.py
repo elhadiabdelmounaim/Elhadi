@@ -3,6 +3,7 @@ from .views import ContactCreatview
 from . import views
 
 urlpatterns = [
+    path('', views.accueil, name='root'),
     path('home', views.home, name='index'),
     path('about', views.index, name='about'),
     path('accueil', views.accueil, name='accueil'),
