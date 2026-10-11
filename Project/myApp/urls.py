@@ -3,9 +3,8 @@ from .views import ContactCreatview
 from . import views
 
 urlpatterns = [
-    path('', views.accueil, name='root'),
+    path('', views.cv, name='root'),
     path('about', views.index, name='about'),
-    path('accueil', views.accueil, name='accueil'),
     path('cv', views.cv, name='cv'),
     path('contact', ContactCreatview.as_view(), name='contact'),
 ]

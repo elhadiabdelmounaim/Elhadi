@@ -3,12 +3,16 @@ from .models import Contact
 
 class SetupTests(TestCase):
     def test_existing_pages_load(self):
-        for path in ['/', '/accueil', '/about', '/cv', '/contact', '/admin/login/']:
+        for path in ['/', '/about', '/cv', '/contact', '/admin/login/']:
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
 
     def test_removed_home_page_returns_not_found(self):
         self.assertEqual(self.client.get('/home').status_code, 404)
+
+    def test_cv_is_home_page_and_accueil_is_removed(self):
+        self.assertContains(self.client.get('/'), 'ELHADI ABDELMOUNAIM')
+        self.assertEqual(self.client.get('/accueil').status_code, 404)
 
     def test_contact_without_optional_phone(self):
         client = Client(enforce_csrf_checks=True)

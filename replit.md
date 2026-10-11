@@ -14,9 +14,9 @@ cd Project && python manage.py runserver 0.0.0.0:5000
 Python 3.12 and the dependencies declared in `Project/requirements.txt` are
 installed through the root `pyproject.toml` and `uv.lock`.
 
-The root URL displays the existing Accueil page. Routes include `/accueil`,
-`/cv`, `/contact`, `/about`, and `/admin/`. The unused Home page and `/home`
-route have been removed.
+The root URL displays the CV page. Routes include `/cv`, `/contact`, `/about`,
+and `/admin/`. The unused Home and Accueil pages and their routes have been
+removed.
 
 ## Configuration
 

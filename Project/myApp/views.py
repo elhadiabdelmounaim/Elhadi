@@ -23,8 +23,5 @@ class ContactCreatview(CreateView):
 def index(request):
     return render(request,'myApp/pages/about.html')
 
-def accueil(request):
-    return render(request,'myApp/pages/accueil.html')
-
 def cv(request):
     return render(request,'myApp/pages/cv.html')
