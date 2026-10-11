@@ -8,7 +8,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 
-from .forms import ContactForm, CVItemForm, CVProfileForm, CVSectionForm
+from .forms import ContactForm, CVItemForm, CVProfileForm, CVSectionForm, OwnerAuthenticationForm
 from .models import Contact, CVItem, CVProfile, CVSection
 
 class ContactCreatview(CreateView):
@@ -27,7 +27,7 @@ class ContactCreatview(CreateView):
 
 
 def index(request):
-    return render(request,'myApp/pages/about.html')
+    return redirect("root")
 
 
 def cv(request):
@@ -71,6 +71,7 @@ def owner_required(view):
 
 class DashboardLoginView(LoginView):
     template_name = "myApp/dashboard/login.html"
+    authentication_form = OwnerAuthenticationForm
     redirect_authenticated_user = True
 
 

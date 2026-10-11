@@ -6,9 +6,36 @@ from .models import Contact, CVItem, CVProfile, CVSection
 
 class SetupTests(TestCase):
     def test_existing_pages_load(self):
-        for path in ['/', '/about', '/cv', '/contact', '/admin/login/']:
+        for path in ['/', '/cv', '/contact', '/admin/login/']:
             with self.subTest(path=path):
                 self.assertEqual(self.client.get(path).status_code, 200)
+
+    def test_public_navigation_is_cv_and_contact_only(self):
+        for path in ["/", "/cv", "/contact"]:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertContains(response, ">CV</a>")
+                self.assertContains(response, ">Contact</a>")
+                self.assertNotContains(response, ">Home</a>")
+                self.assertNotContains(response, "/dashboard/login/")
+        self.assertRedirects(self.client.get("/about"), "/")
+
+    def test_dashboard_login_accepts_only_the_owner(self):
+        get_user_model().objects.create_user(username="visitor", password="test-password")
+        login_url = reverse("dashboard_login")
+        response = self.client.post(login_url, {
+            "username": "visitor", "password": "test-password",
+        })
+        self.assertContains(response, "The username or password was not accepted.")
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+        owner = get_user_model().objects.create_superuser(
+            username="owner", email="owner@example.com", password="test-password"
+        )
+        response = self.client.post(login_url, {
+            "username": owner.username, "password": "test-password",
+        })
+        self.assertRedirects(response, reverse("dashboard_home"))
 
     def test_removed_home_page_returns_not_found(self):
         self.assertEqual(self.client.get('/home').status_code, 404)

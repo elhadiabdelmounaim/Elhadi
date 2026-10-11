@@ -17,6 +17,9 @@ installed through the root `pyproject.toml` and `uv.lock`.
 The root URL displays the public CV. Visitors do not need to sign in. The CV is
 managed at `/dashboard/`, which is limited to Django superusers; sign in at
 `/dashboard/login/`. The older Home and Accueil pages and routes were removed.
+Public navigation contains only CV and Contact: visitors do not have accounts
+or a login link. The dashboard login accepts only active superusers. The legacy
+`/about` URL redirects to the public CV rather than displaying another page.
 
 The CV profile, sections, and entries are stored in the existing SQLite
 database. The initial data migration carries the current CV content into these
