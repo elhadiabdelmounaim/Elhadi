@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 # The development preview is served through Replit's HTTPS proxy.
 CSRF_TRUSTED_ORIGINS = ['https://*.replit.dev']
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+REPLIT_PREVIEW_EMBEDDING = DEBUG and bool(os.environ.get('REPLIT_DEV_DOMAIN'))
 
 
 # Application definition
@@ -52,7 +53,7 @@ MIDDLEWARE = [
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'myApp.middleware.PreviewFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'Project.urls'

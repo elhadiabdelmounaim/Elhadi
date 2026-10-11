@@ -42,6 +42,9 @@ cd Project && python manage.py createsuperuser
 - This is a development setup, not a production deployment: DEBUG is enabled
   and all hosts are allowed for the preview. Production publishing requires
   a separate security and hosting review.
+- Public pages allow embedding in trusted Replit origins only when DEBUG and
+  the Replit development environment are both active. Admin pages retain
+  frame protection; open the private dashboard in its own browser tab.
 
 ## Checks
 

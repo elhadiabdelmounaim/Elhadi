@@ -1,10 +1,32 @@
 from django.contrib.auth import get_user_model
-from django.test import Client, TestCase
+from django.test import Client, TestCase, override_settings
 from django.urls import reverse
 
 from .models import Contact, CVItem, CVProfile, CVSection
 
 class SetupTests(TestCase):
+    @override_settings(DEBUG=True, REPLIT_PREVIEW_EMBEDDING=True)
+    def test_public_pages_allow_trusted_replit_preview_only(self):
+        for path in ["/", "/cv", "/contact"]:
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 200)
+                self.assertNotIn("X-Frame-Options", response)
+                self.assertEqual(
+                    response["Content-Security-Policy"],
+                    "frame-ancestors 'self' https://replit.com "
+                    "https://*.replit.com https://*.replit.dev",
+                )
+        for path in ["/dashboard/login/", "/admin/login/"]:
+            with self.subTest(path=path):
+                self.assertEqual(self.client.get(path)["X-Frame-Options"], "DENY")
+
+    @override_settings(DEBUG=False, REPLIT_PREVIEW_EMBEDDING=True)
+    def test_production_pages_keep_frame_protection(self):
+        for path in ["/", "/cv", "/contact", "/dashboard/login/"]:
+            with self.subTest(path=path):
+                self.assertEqual(self.client.get(path)["X-Frame-Options"], "DENY")
+
     def test_existing_pages_load(self):
         for path in ['/', '/cv', '/contact', '/admin/login/']:
             with self.subTest(path=path):

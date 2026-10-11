@@ -1,0 +1,1 @@
+- [Embedded preview checks](embedded-preview-checks.md) — a healthy server and direct screenshot do not prove that the canvas iframe can display the site.
