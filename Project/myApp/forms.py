@@ -69,7 +69,17 @@ class CVItemForm(forms.ModelForm):
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
-        fields = '__all__'
+        fields = [
+            'first_name', 'last_name', 'email', 'phone',
+            'subject', 'message', 'consent',
+        ]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subject'].choices = [
+            choice for choice in self.fields['subject'].choices
+            if choice[0] not in {'college', 'lycee'}
+        ]
 
     # ── Validation personnalisée ──────────────────────────────────────────────
 

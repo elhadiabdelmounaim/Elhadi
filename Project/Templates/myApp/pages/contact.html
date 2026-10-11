@@ -135,29 +135,10 @@
                                 <option value="">Choisissez le sujet</option>
                                 <option value="info" {% if form.subject.value == 'info' %}selected{% endif %}>Demande d'information</option>
                                 <option value="inscription" {% if form.subject.value == 'inscription' %}selected{% endif %}>Inscription aux cours</option>
-                                <option value="college" {% if form.subject.value == 'college' %}selected{% endif %}>Cours niveau Collège</option>
-                                <option value="lycee" {% if form.subject.value == 'lycee' %}selected{% endif %}>Cours niveau Lycée</option>
                                 <option value="tarifs" {% if form.subject.value == 'tarifs' %}selected{% endif %}>Tarifs</option>
                                 <option value="autre" {% if form.subject.value == 'autre' %}selected{% endif %}>Autre sujet</option>
                             </select>
                             <span class="error-message">{{ form.subject.errors|join:", " }}</span>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="niveau">Niveau scolaire</label>
-                            <select id="niveau" name="niveau">
-                                <option value="">Choisissez le niveau</option>
-                                <optgroup label="Niveau Collège">
-                                    <option value="1app" {% if form.niveau.value == '1app' %}selected{% endif %}>1ère Année Collège</option>
-                                    <option value="2app" {% if form.niveau.value == '2app' %}selected{% endif %}>2ème Année Collège</option>
-                                    <option value="3app" {% if form.niveau.value == '3app' %}selected{% endif %}>3ème Année Collège</option>
-                                </optgroup>
-                                <optgroup label="Niveau Lycée">
-                                    <option value="tc" {% if form.niveau.value == 'tc' %}selected{% endif %}>Tronc Commun</option>
-                                    <option value="1bac" {% if form.niveau.value == '1bac' %}selected{% endif %}>1ère Bac</option>
-                                    <option value="2bac" {% if form.niveau.value == '2bac' %}selected{% endif %}>2ème Bac</option>
-                                </optgroup>
-                            </select>
                         </div>
 
                         <div class="form-group">
