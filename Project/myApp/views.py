@@ -20,9 +20,6 @@ class ContactCreatview(CreateView):
         return super().form_invalid(form)
 
 
-def home(request):
-    return render(request,'myApp/pages/home.html')
-
 def index(request):
     return render(request,'myApp/pages/about.html')
 
